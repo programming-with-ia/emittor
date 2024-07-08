@@ -4,14 +4,22 @@
 <h5>◦ Developed with the software and tools below.</h5>
 
 <p align="center">
-<img src="https://img.shields.io/badge/Next.js-000000.svg?style&logo=Next.js&logoColor=white" alt="Next.js" />
-<img src="https://img.shields.io/badge/React-61DAFB.svg?style&logo=React&logoColor=black" alt="React" />
-<img src="https://img.shields.io/badge/TypeScript-3178C6.svg?style&logo=TypeScript&logoColor=white" alt="TypeScript" />
+
+![Next.js](https://img.shields.io/badge/Next.js-000000.svg?style&logo=Next.js&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB.svg?style&logo=React&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6.svg?style&logo=TypeScript&logoColor=white)
+
 </p>
-<img src="https://img.shields.io/bundlephobia/min/emittor" alt="minified size" />
-<img src="https://img.shields.io/github/last-commit/programming-with-ia/emittor" alt="git-last-commit" />
-<img src="https://img.shields.io/github/commit-activity/m/programming-with-ia/emittor" alt="GitHub commit activity" />
-<img src="https://img.shields.io/github/languages/top/programming-with-ia/emittor" alt="GitHub top language" />
+
+![git-last-commit](https://img.shields.io/github/last-commit/programming-with-ia/emittor)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/programming-with-ia/emittor)
+![GitHub top language](https://img.shields.io/github/languages/top/programming-with-ia/emittor)
+
+![minified size](https://img.shields.io/bundlephobia/min/emittor)
+
+[![NPM Version](https://img.shields.io/npm/v/emittor?logo=npm)](https://www.npmjs.com/package/emittor)
+[![GitHub](https://img.shields.io/badge/emittor-161b22?logo=github)](https://github.com/programming-with-ia/emittor)
+
 </div>
 
 ---
