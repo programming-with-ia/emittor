@@ -1,0 +1,7 @@
+/dist
+node_modules
+
+.env
+tempCodeRunnerFile.*
+test_*.*
+.DS_Store
