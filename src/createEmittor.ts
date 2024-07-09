@@ -1,11 +1,32 @@
 type Callback<T> = (state: T) => void;
 
+type EmittorOptions = { 
+    match?: boolean
+}
+
 export class Emittor<T> {
     private callbacks: Callback<T>[] = [];
     private _state: T;
+    public setState: Callback<T>;
+    public emit: Callback<T>
 
-    constructor(initialState: T) {
+    constructor(initialState: T, options:EmittorOptions  = { match: true }) {
         this._state = initialState;
+        if (options.match) {
+            this.emit = this.setState = this.setMatchState.bind(this);
+        } else {
+            this.emit = this.setState = this.setOnlyState.bind(this);
+        }
+    }
+
+    setOnlyState(state: T){
+        this._state = state
+        this.exec()
+    }
+
+    setMatchState(state: T){
+        if (state == this._state)return
+        this.setOnlyState(state)
     }
 
     exec(): void {
@@ -21,19 +42,12 @@ export class Emittor<T> {
         });
     }
 
-    emit(state: T): void {
-        // Set the new state if provided and execute callbacks
-        this._state = state;
-        this.exec();
-
-    } setState = this.emit
-
     get state(): T {
         return this._state;
     }
 
     set state(nState: T) {
-        this.emit(nState);
+        this.setState(nState);
     }
 
     getState() {
@@ -54,8 +68,8 @@ export class Emittor<T> {
     }
 }
 
-export function createEmittor<T>(state: T) {
-    return new Emittor(state)
+export function createEmittor<T>(state: T, options?:EmittorOptions) {
+    return new Emittor(state, options)
 }
 
 //* ---
@@ -73,8 +87,8 @@ type ReducerEmittorCallback<R extends string> = {
 
 export class ReducerEmittor<T, R extends string> extends Emittor<T> {
     reducers: ReducerEmittorCallback<R>
-    constructor(initState: T, reducers: Reducers<T, R>) {
-        super(initState)
+    constructor(initState: T, reducers: Reducers<T, R>, options?:EmittorOptions) {
+        super(initState, options)
         this.reducers = {} as ReducerEmittorCallback<R>
         Object.entries(reducers).map(([name, callback]) => {
             this.reducers[name as R] = () => (callback as ReducerCallback<T>)(this)
@@ -82,6 +96,6 @@ export class ReducerEmittor<T, R extends string> extends Emittor<T> {
     }
 }
 
-export function createReducerEmittor<T, K extends string>(initState: T, reducers: Reducers<T, K>) {
-    return new ReducerEmittor(initState, reducers)
+export function createReducerEmittor<T, K extends string>(initState: T, reducers: Reducers<T, K>, options?:EmittorOptions) {
+    return new ReducerEmittor(initState, reducers, options)
 }

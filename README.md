@@ -78,17 +78,11 @@ function Page() {
 
 This adjusted code snippet provides a simple and easy-to-understand usage example of the `emittor` package. It demonstrates using the `useEmittor` hook to manage state, similar to how `useState` is used in React.
 
+</br>
+
 > **Warning** </br>
 > Always create an emittor in a separate file</br>
 > Because in development mode, the whole file will be rendered again. That can cause unexpected bugs.
-
-.
-
-> **Note** </br>
-> create emittor anywhere in your project like [`createContext`](https://react.dev/reference/react/createContext) in React. </br>
-> and import `Emittor` where use or link (in components and other places)
-
-</br>
 
 ## Emittor In Multiple Components
 
@@ -241,6 +235,30 @@ export default function Page() {
   );
 }
 ```
+
+</br>
+
+---
+
+---
+
+</br>
+
+# API Reference
+
+| Method          | Description                                                                                     |
+|-----------------|-------------------------------------------------------------------------------------------------|
+| `constructor(initialState: T, options: { match?: boolean })` | Initializes an instance of `Emittor` with an initial state and optional matching behavior. If `options.match` is true, `setMatchState` and `emit` are bound to handle state updates; otherwise, `setOnlyState` and `emit` are used. |
+| `setState()`, `emit()`      | Sets the state and Executes all subscribed callbacks (also use `state`)                                            |
+| `getState()`                | Returns the current state (also use `state`).                                                                       |
+| `state`                     | Is current state (with `get` & `set`) you can modify directly.                                                                     |
+| `exec()`, `refresh()`       | Executes all subscribed callbacks with the current state.                                       |
+| `run(state: T)`             | Executes all callbacks with the provided `state` (this will not changed current state).                                               |
+| `connect(callback: Callback<T>)`    | Adds the `callback` to the list of callbacks to be executed on state changes.                    |
+| `disconnect(callback: Callback<T>)` | Removes the specified `callback` from the list of callbacks.                                      |
+| *`setOnlyState(state: T)`   | Updates the state without checking and executes all subscribed callbacks.               |
+| *`setMatchState(state: T)`  | Updates the state only if the new `state` differs from the current state and then executes `setOnlyState(state)`. |
+
 
 </br>
 
