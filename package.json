@@ -1,6 +1,6 @@
 {
   "name": "emittor",
-  "version": "0.2.0-beta.1",
+  "version": "0.2.0-beta.2",
   "description": "State Management using custom hook without Wrapping components using Providers",
   "private": false,
   "repository": {

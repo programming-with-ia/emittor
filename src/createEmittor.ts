@@ -20,8 +20,12 @@ export class Emittor<T> {
     }
 
     setOnlyState(state: T){
-        this._state = state
+        this._setState(state)
         this.exec()
+    }
+
+    _setState(state: T){
+        this._state = state
     }
 
     setMatchState(state: T){

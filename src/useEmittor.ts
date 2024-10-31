@@ -14,7 +14,8 @@ export const useEmittor = <T>(
     // Initialize state with the emittor state or the default value
     if (defaultValue !== undefined && emittor.state === undefined) {
       const initial = isFunc<T>(defaultValue) ? defaultValue() : defaultValue;
-      emittor.emit(initial);
+      // emittor.emit(initial);
+      emittor._setState(initial)
       return initial;
     }
     return emittor.state;
@@ -30,7 +31,7 @@ export const useEmittor = <T>(
   //     if (defaultValue !== undefined && emittor.state === undefined) {
   //         console.log("defaultValue", defaultValue)
   //         const initial = isFunc<T>(defaultValue) ? defaultValue() : defaultValue;
-  //         emittor.emit(initial);
+  //         emittor._setState(initial);
   //     }
   // }, [defaultValue, emittor]);
 
