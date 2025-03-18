@@ -1,6 +1,6 @@
 {
   "name": "emittor",
-  "version": "0.2.0-beta.2",
+  "version": "0.2.1-beta.2",
   "description": "State Management using custom hook without Wrapping components using Providers",
   "private": false,
   "repository": {
@@ -13,7 +13,9 @@
   "homepage": "https://github.com/programming-with-ia/emittor#readme",
   "typings": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "package.json",
+    "README.md"
   ],
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

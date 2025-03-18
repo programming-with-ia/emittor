@@ -1,6 +1,6 @@
 type Callback<T> = (state: T) => void;
 
-type EmittorOptions = { 
+export type EmittorOptions = { 
     match?: boolean
 }
 
