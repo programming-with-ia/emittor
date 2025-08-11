@@ -1,267 +1,135 @@
-<div align="center">
-<h1 align="center">Emittor</h1>
-<h3>State Manager for 'ReactJs | NextJs'</h3>
-<h5>◦ Developed with the software and tools below.</h5>
+# Turborepo starter
 
-<p align="center">
+This Turborepo starter is maintained by the Turborepo core team.
 
-![Next.js](https://img.shields.io/badge/Next.js-000000.svg?style&logo=Next.js&logoColor=white)
-![React](https://img.shields.io/badge/React-61DAFB.svg?style&logo=React&logoColor=black)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6.svg?style&logo=TypeScript&logoColor=white)
+## Using this example
 
-</p>
-
-![git-last-commit](https://img.shields.io/github/last-commit/programming-with-ia/emittor)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/programming-with-ia/emittor)
-![GitHub top language](https://img.shields.io/github/languages/top/programming-with-ia/emittor)
-
-![minified size](https://img.shields.io/bundlephobia/min/emittor)
-
-[![NPM Version](https://img.shields.io/npm/v/emittor?logo=npm)](https://www.npmjs.com/package/emittor)
-[![GitHub](https://img.shields.io/badge/emittor-161b22?logo=github)](https://github.com/programming-with-ia/emittor)
-
-</div>
-
----
-
-## 📍 Overview
-
-The custom emittor approach for state management in React offers a convenient way to manage and share states across multiple components without the need to wrap them with providers. By utilizing event-driven architecture, this method simplifies the handling of state updates, making it easy to work with event handlers and propagate changes throughout the application. With this approach, components can subscribe to state changes directly, ensuring seamless communication and synchronization between different parts of the UI. Additionally, it eliminates the boilerplate code associated with provider-based state management solutions, providing a more lightweight and flexible alternative for managing application state.
-
----
-
-## 🚀 Getting Started
-
-Install the package with npm:
+Run the following command:
 
 ```sh
-npm install emittor
+npx create-turbo@latest
 ```
 
-or yarn:
+## What's inside?
 
-```sh
-yarn add emittor
+This Turborepo includes the following packages/apps:
+
+### Apps and Packages
+
+- `docs`: a [Next.js](https://nextjs.org/) app
+- `web`: another [Next.js](https://nextjs.org/) app
+- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
+- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
+- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+
+Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+
+### Utilities
+
+This Turborepo has some additional tools already setup for you:
+
+- [TypeScript](https://www.typescriptlang.org/) for static type checking
+- [ESLint](https://eslint.org/) for code linting
+- [Prettier](https://prettier.io) for code formatting
+
+### Build
+
+To build all apps and packages, run the following command:
+
+```
+cd my-turborepo
+
+# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
+turbo build
+
+# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
+npx turbo build
+yarn dlx turbo build
+pnpm exec turbo build
 ```
 
-or pnpm:
+You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
 
-```sh
-pnpm add emittor
+```
+# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
+turbo build --filter=docs
+
+# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
+npx turbo build --filter=docs
+yarn exec turbo build --filter=docs
+pnpm exec turbo build --filter=docs
 ```
 
----
+### Develop
 
-## 📖 Usage
+To develop all apps and packages, run the following command:
 
-First Create `Emittor` in separate file `/lib/emittor.ts`
+```
+cd my-turborepo
 
-```ts
-import { createEmittor } from 'emittor'
+# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
+turbo dev
 
-export const countEmittor = createEmittor(0)
+# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
+npx turbo dev
+yarn exec turbo dev
+pnpm exec turbo dev
 ```
 
-then:  
-connect State with `Emittor` in client Components
+You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
 
-```tsx
-"use client";
-import { countEmittor } from "./lib/emittor";
+```
+# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
+turbo dev --filter=web
 
-function Page() {
-    // connect State with `Emittor` in client Components and use like useState Hook
-    const [count, setCount] = useEmittor(countEmittor)
-    ...
-}
+# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
+npx turbo dev --filter=web
+yarn exec turbo dev --filter=web
+pnpm exec turbo dev --filter=web
 ```
 
-This adjusted code snippet provides a simple and easy-to-understand usage example of the `emittor` package. It demonstrates using the `useEmittor` hook to manage state, similar to how `useState` is used in React.
+### Remote Caching
 
-</br>
+> [!TIP]
+> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
 
-> **Warning** </br>
-> Always create an emittor in a separate file</br>
-> Because in development mode, the whole file will be rendered again. That can cause unexpected bugs.
+Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
 
-## Emittor In Multiple Components
+By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
 
-The emittor package enables automatic state synchronization across React components. By simply integrating emittor, any component subscribing to state changes will update whenever the state changes anywhere in the application. This eliminates the need for manual state passing or provider wrapping, streamlining development and enhancing component responsiveness.
+```
+cd my-turborepo
 
-```tsx
-import { useEmittor } from "emittor"
-import { countEmittor } from "./lib/emittor"
+# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
+turbo login
 
-function Page(){
-    return(
-        <>
-          <View />
-          <Button/>
-        </>
-    )
-}
-
-// This component only re-renders when the state is changed.
-function View(){
-    const [count, setCount] = useEmittor(countEmittor)
-    return(
-        <div>
-            {count}
-        </div>
-    )
-}
-
-function Button() {
-  return (
-    <button onClick={()=>countEmittor.setState(countEmittor.state+1)}>Add</button>
-  )
-}
-
-export default Page
+# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
+npx turbo login
+yarn exec turbo login
+pnpm exec turbo login
 ```
 
-</br>
+This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
 
-### Other Usage
+Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
 
-You can also use the emitter in event listeners or other functions to modify state.
+```
+# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
+turbo link
 
-```ts
-countEmittor.getState()
-countEmittor.setState(10)
-// also use use directly
-countEmittor.state
-countEmittor.state = 10
+# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
+npx turbo link
+yarn exec turbo link
+pnpm exec turbo link
 ```
 
-It will re-render those components where that emitter is used.
-</br>
+## Useful Links
 
-## Usage of `ReducerEmittor`
+Learn more about the power of Turborepo:
 
-First Create `ReducerEmittor` in separate file `/lib/emittor.ts`
-
-```ts
-import { createReducerEmittor } from "emittor"
-
-export const countREmittor = createReducerEmittor(0, {
-    increment: e=> {
-        e.setState(e.state+1)
-    },
-    decrement: e=> {
-        e.setState(e.state-1)
-    }
-})
-```
-
-then use like this
-
-```tsx
-"use client";
-import { useEmittor } from "emittor"
-import { countREmittor } from "./lib/emittor";
-
-export default function Page() {
-  const [count, setCount] = useEmittor(countREmittor)
-
-  return (
-    <div className="flex gap-8">
-      <button className="bg-slate-700 p-3">
-          {count}
-      </button>
-      <button className="bg-slate-700 p-3" onClick={()=>countREmittor.reducers.increment()}>
-        +
-      </button>
-      <button className="bg-slate-700 p-3" onClick={()=>countREmittor.reducers.decrement()}>
-        -
-      </button>
-    </div>
-  );
-}
-```
-
-</br>
-
----
-
-</br>
-
-you can also use `Emittor` like `ReducerEmittor`
-</br>
-in `/lib/emittor.ts`
-
-```ts
-import { createEmittor } from "emittor"
-
-const emittor = createEmittor(0)
-
-function increment(by:number){
-    emittor.setState(emittor.state+by)
-}
-
-function decrement(by:number){
-    emittor.setState(emittor.state-by)
-}
-
-export const countEmittor = {
-    emittor,
-    increment,
-    decrement
-}
-```
-
-use in Component
-
-```tsx
-"use client";
-import { useEmittor } from "emittor"
-import { countEmittor } from "./lib/emittor";
-
-export default function Page() {
-  const [count, setCount] = useEmittor(countEmittor.emittor)
-
-  return (
-    <div className="flex gap-8">
-      <button className="bg-slate-700 p-3" onClick={()=>setCount(count+1)}>
-          {count}
-      </button>
-      <button className="bg-slate-700 p-3" onClick={()=>countEmittor.increment(10)}>
-        +
-      </button>
-      <button className="bg-slate-700 p-3" onClick={()=>countEmittor.decrement(5)}>
-        -
-      </button>
-    </div>
-  );
-}
-```
-
-</br>
-
----
-
----
-
-</br>
-
-# API Reference
-
-| Method          | Description                                                                                     |
-|-----------------|-------------------------------------------------------------------------------------------------|
-| `constructor(initialState: T, options: { match?: boolean })` | Initializes an instance of `Emittor` with an initial state and optional matching behavior. If `options.match` is true, `setMatchState` and `emit` are bound to handle state updates; otherwise, `setOnlyState` and `emit` are used. |
-| `setState()`, `emit()`      | Sets the state and Executes all subscribed callbacks (also use `state`)                                            |
-| `getState()`                | Returns the current state (also use `state`).                                                                       |
-| `state`                     | Is current state (with `get` & `set`) you can modify directly.                                                                     |
-| `exec()`, `refresh()`       | Executes all subscribed callbacks with the current state.                                       |
-| `run(state: T)`             | Executes all callbacks with the provided `state` (this will not changed current state).                                               |
-| `connect(callback: Callback<T>)`    | Adds the `callback` to the list of callbacks to be executed on state changes.                    |
-| `disconnect(callback: Callback<T>)` | Removes the specified `callback` from the list of callbacks.                                      |
-| *`setOnlyState(state: T)`   | Updates the state without checking and executes all subscribed callbacks.               |
-| *`setMatchState(state: T)`  | Updates the state only if the new `state` differs from the current state and then executes `setOnlyState(state)`. |
-
-
-</br>
-
-## 📄 License
-
-This project is licensed under the `ℹ️ MIT` License.
+- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
+- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
+- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
+- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
+- [Configuration Options](https://turborepo.com/docs/reference/configuration)
+- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)

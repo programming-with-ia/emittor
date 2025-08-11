@@ -1,0 +1,42 @@
+{
+  "name": "emittor-middlewares",
+  "version": "1.0.0-alpha.0",
+  "description": "State Management using custom hook without Wrapping components using Providers",
+  "private": false,
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/programming-with-ia/emittor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/programming-with-ia/emittor/issues"
+  },
+  "homepage": "https://github.com/programming-with-ia/emittor#readme",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "package.json",
+    "README.md"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup"
+  },
+  "keywords": [],
+  "author": "immi",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/lodash.debounce": "^4.0.9",
+    "emittor": "workspace:*",
+    "lodash.debounce": "^4.0.8"
+  },
+  "peerDependencies": {
+    "emittor": "^1.0.0-alpha.0",
+    "lodash.debounce": "^4.0.8"
+  },
+  "dependencies": {
+    "window-change-events": "^0.1.0"
+  }
+}

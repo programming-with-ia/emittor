@@ -1,49 +1,34 @@
 {
-  "name": "emittor",
-  "version": "0.2.1-beta.2",
-  "description": "State Management using custom hook without Wrapping components using Providers",
-  "private": false,
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/programming-with-ia/emittor.git"
-  },
-  "bugs": {
-    "url": "https://github.com/programming-with-ia/emittor/issues"
-  },
-  "homepage": "https://github.com/programming-with-ia/emittor#readme",
-  "typings": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "package.json",
-    "README.md"
-  ],
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "name": "emittor-hub",
+  "private": true,
   "scripts": {
-    "build": "tsup"
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "check-types": "turbo run check-types"
   },
-  "keywords": [
-    "next",
-    "nextjs",
-    "next js",
-    "react",
-    "emittor",
-    "signal",
-    "redux",
-    "state manager",
-    "react state manager",
-    "nextjs state manager",
-    "state management"
-  ],
-  "author": "immi",
-  "license": "MIT",
   "devDependencies": {
-    "@types/react": "^18.2.73",
-    "@types/react-dom": "^18.2.23",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^20.14.10",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "del-cli": "^7.0.0",
+    "eslint": "^9.23.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^16.4.0",
+    "prettier": "^3.6.2",
     "tsup": "^8.0.2",
-    "typescript": "^5.4.3"
+    "turbo": "^2.5.8",
+    "typescript": "5.9.2",
+    "typescript-eslint": "^8.27.0"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "fs-extra": "^11.3.2",
+    "tsx": "^4.20.6"
   }
 }
