@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/programming-with-ia/emittor/issues"
   },
-  "homepage": "https://github.com/programming-with-ia/emittor#readme",
+  "homepage": "https://github.com/programming-with-ia/emittor/blob/master/packages/emittor-middlewares/README.md",
   "typings": "dist/index.d.ts",
   "files": [
     "dist",

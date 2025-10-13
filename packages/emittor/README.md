@@ -34,7 +34,7 @@ Emittor is a tiny, evented state holder. It lets you share state across React co
 - Lifecycle: `onInit`, `init()`, `onDeinit`, `deinit()`
 - Optional reducer factory to attach named actions to `em.reducers`
 
-Bring batteries with the companion package `emittor-middlewares`. For advanced patterns (URL params, localStorage sync, debounce), see that README.
+Bring batteries with the companion package [`emittor-middlewares`](https://www.npmjs.com/package/emittor-middlewares). For advanced patterns (URL params, localStorage sync, debounce), see that README.
 
 ---
 
@@ -88,7 +88,7 @@ Note: `useEmittor` calls `emittor.init()` once on mount.
 
 Use `.use()` to add middlewares. Factories run once and return a middleware. Keep side effects inside the middleware and call `next()` to continue.
 
-- Need URL syncing, localStorage, or debounce? See `emittor-middlewares`.
+- Need URL syncing, localStorage, or debounce? See [`emittor-middlewares`](https://www.npmjs.com/package/emittor-middlewares).
 - For custom middlewares, use this signature: `(next, em) => { /* side effect */; next(); }`.
 
 ```ts
@@ -272,8 +272,8 @@ Lifecycle
 
 For URL param sync, localStorage sync, and debounced side effects, see:
 
-- `emittor-middlewares` on npm
-- The usage examples in its README
+- [`emittor-middlewares`](https://www.npmjs.com/package/emittor-middlewares) on npm
+- The usage examples in its [README](https://github.com/programming-with-ia/emittor/blob/master/packages/emittor-middlewares/README.md)
 
 ---
 
