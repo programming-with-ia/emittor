@@ -102,7 +102,26 @@ page.use(
 );
 ```
 
+## Usage
+
+### 4) Log state changes
+
+A simple logger to trace state changes.
+
+```ts
+import { createEmittor } from "emittor";
+import { middlewareLogger } from "emittor-middlewares";
+
+export const search = createEmittor("");
+
+search.use(middlewareLogger);
+```
+
 ## API
+
+### `middlewareLogger => Middleware`
+
+Log state changes with timestamps.
 
 ### `middlewareDebounce(callback, options?) => Middleware`
 

@@ -7,7 +7,6 @@
     "noUncheckedIndexedAccess": true,
     "target": "ES2022",
     "outDir": "dist",
-    "rootDir": "src",
     "module": "esnext",
     "moduleResolution": "node",
     "lib": ["dom", "dom.iterable", "esnext", "es2022"],
@@ -21,11 +20,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     // "noEmit": true,
-    "jsx": "react-jsx",
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "jsx": "react-jsx"
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
