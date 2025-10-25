@@ -21,7 +21,8 @@
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsx ./preBuild.ts && tsup"
+    "build": "tsx ./preBuild.ts && tsup",
+    "check-types": "tsc --noEmit"
   },
   "keywords": [
     "next",
