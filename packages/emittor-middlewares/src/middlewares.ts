@@ -6,7 +6,7 @@ import type { MiddlewareFactory, Middleware, Emittor, Reducers } from "emittor";
 import debounce from "lodash.debounce";
 import { observeUrl } from "window-change-events/url";
 import { observeStorage } from "window-change-events/localstorage";
-
+export { observeUrl, observeStorage };
 /**
  * Return value if defined, otherwise fallback.
  * Simple helper to keep option defaults tidy.
@@ -96,7 +96,10 @@ export function updateMiddlewareLocalStorage<T, R extends Reducers>(
         em.onDeinit(() => {
           off();
           debouncedUpdateStorage.cancel();
-          if (valueUpdateTimeout) clearTimeout(valueUpdateTimeout);
+          if (valueUpdateTimeout) {
+            clearTimeout(valueUpdateTimeout);
+            valueUpdateTimeout = undefined;
+          }
         });
 
         // Initial sync from storage.
@@ -113,7 +116,10 @@ export function updateMiddlewareLocalStorage<T, R extends Reducers>(
             return;
           }
 
-          if (valueUpdateTimeout) clearTimeout(valueUpdateTimeout);
+          if (valueUpdateTimeout) {
+            clearTimeout(valueUpdateTimeout);
+            valueUpdateTimeout = undefined;
+          }
 
           // If we just wrote locally, delay handling to avoid clobbering.
           if (disableValueUpdateUntil > Date.now()) {
@@ -249,7 +255,10 @@ export function updateMiddlewareSearchParam<T, R extends Reducers>(
           // Clean up all resources when the emittor is destroyed.
           off();
           debouncedUpdateUrl.cancel();
-          if (valueUpdateTimeout) clearTimeout(valueUpdateTimeout);
+          if (valueUpdateTimeout) {
+            clearTimeout(valueUpdateTimeout);
+            valueUpdateTimeout = undefined;
+          }
         });
 
         // Initial sync from URL.
@@ -263,7 +272,10 @@ export function updateMiddlewareSearchParam<T, R extends Reducers>(
             return;
           }
 
-          if (valueUpdateTimeout) clearTimeout(valueUpdateTimeout);
+          if (valueUpdateTimeout) {
+            clearTimeout(valueUpdateTimeout);
+            valueUpdateTimeout = undefined;
+          }
 
           // If we just scheduled a URL write, delay reacting to incoming change.
           if (disableValueUpdateUntil > Date.now()) {

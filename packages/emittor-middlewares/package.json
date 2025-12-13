@@ -1,6 +1,6 @@
 {
   "name": "emittor-middlewares",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "description": "State Management using custom hook without Wrapping components using Providers",
   "private": false,
   "type": "module",
