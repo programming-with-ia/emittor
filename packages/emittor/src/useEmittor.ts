@@ -1,34 +1,43 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useSyncExternalStore } from "react";
 import type { Emittor } from "./createEmittor";
 import type { Reducers } from "./types";
 
-function isFunc<T>(value: unknown): value is (state: T) => T {
+export function isFunc<T>(value: unknown): value is (state: T) => T {
   return typeof value === "function";
 }
 
 export const useEmittor = <T, R extends Reducers>(
   emittor: Emittor<T, R>,
 ): [T, (state: T | ((state: T) => T)) => void] => {
-  const [state, setState] = useState<T>(() => {
-    return emittor.state; // i think it's not enough
-  });
+  const subscribe = useCallback(
+    (onStoreChange: () => void) => {
+      // emittor.connect expects (newState: T) => void, but onStoreChange
+      // ignores the arg — it just tells React to re-check getSnapshot
+      emittor.connect(onStoreChange as any);
+      return () => emittor.disconnect(onStoreChange as any);
+    },
+    [emittor],
+  );
 
-  const setValue = (newState: T | ((state: T) => T)) => {
-    const updatedState = isFunc<T>(newState) ? newState(state) : newState;
-    emittor.emit(updatedState);
-  };
+  const getSnapshot = useCallback(() => emittor.state, [emittor]);
 
+  const state = useSyncExternalStore(subscribe, getSnapshot, getSnapshot);
+
+  // Run emittor init callbacks on mount (idempotent via initRan flag)
   useEffect(() => {
-    const updateState = (newState: T) => setState(() => newState);
-    updateState(emittor.state);
-    emittor.connect(updateState);
     emittor.init();
-    return () => {
-      emittor.disconnect(updateState);
-    };
   }, [emittor]);
+
+  const setValue = useCallback(
+    (newState: T | ((prev: T) => T)) => {
+      // Read from emittor.state (source of truth), not stale React state
+      const updated = isFunc<T>(newState) ? newState(emittor.state) : newState;
+      emittor.emit(updated);
+    },
+    [emittor],
+  );
 
   return [state, setValue];
 };
